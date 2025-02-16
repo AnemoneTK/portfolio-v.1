@@ -3,17 +3,20 @@ pipeline {
     stages{
         stage('Clone') {
             steps{
+                print "Clone"
                 clone(
                     [
-            $class : 'GitSCM',
-            branches : [[name : '*/main'],[name : '*/dev']],
-            userRemoteConfigs :[ [
-                credentialsId : '76fb8aa3-686a-47ae-863a-772e8e12c160',
-                url : 'https://github.com/AnemoneTK/portfolio-v.1.git'
-            ]]
-        ]
+                        $class : 'GitSCM',
+                        branches : [[name : '*/main'],[name : '*/dev']],
+                        userRemoteConfigs :[[
+                            credentialsId : '76fb8aa3-686a-47ae-863a-772e8e12c160',
+                            url : 'https://github.com/AnemoneTK/portfolio-v.1.git'
+                        ]]
+                    ]
                 )
-            }}
+                print "Clone Success"
+            }
+        }
         stage('Build') {
             steps {
                 print "Build Docker project"
